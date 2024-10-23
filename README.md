@@ -1,5 +1,8 @@
-# CPW204 Bookstore
+# CPW 204 Bookstore
 This repository is a class explain used to gain experience with source control
+
+## Live Website
+Check out the live website hosted by [GitHub Pages](https://fernandofonseca-code.github.io/CPW204-Bookstore/)
 
 ## Getting Started
 
