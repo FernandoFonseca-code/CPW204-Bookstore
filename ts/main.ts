@@ -51,8 +51,9 @@ console.log(myBook);
 
 window.onload = function() 
 {// the querySelector function requires a CSS id tag
+    let addBookButton = document.querySelector("#addBookButton") as HTMLButtonElement;
     addBookButton.onclick = processBook;
-    let addBookButton = document.querySelector("#addBookButton") as HTMLButtonElement; 
+     
 
     function processBook() 
     {
@@ -66,12 +67,44 @@ window.onload = function()
 /**
  * This function will retrieve all the book data from the HTML page. If all data 
  * is valid a Book object will be returned. If any data is invalid, null will 
- * be returned.
+ * be returned and error messages will be displayed 
  */
-function getBook(): Book 
+function getBook():Book
 {
+    // get all inputs
+    let isbnFormField = document.querySelector("#isbnFormField") as HTMLInputElement;
+    let bookTitleFormField = document.querySelector("#bookTitleFormField") as HTMLInputElement;
+    let retailPriceFormField = document.querySelector("#retailPriceFormField") as HTMLInputElement;
+    let releaseDateFormField = document.querySelector("#releaseDateFormField") as HTMLInputElement;
+
+    // Validate data
+    let isValidData: boolean = true;
+
+    // Validate the ISBN
+    let isbn: string = isbnFormField.value;
+    if (!isValidISBN13(isbn))
+    {
+        isValidData = false;
+        let isbnErrorTextBox = isbnFormField.nextElementSibling as HTMLElement;
+        isbnErrorTextBox.textContent = "ISBN must be either 10 or 13 digits";
+    }
+
     
 }
+
+/**
+ * This validates an ISBN 13 number
+ * @param data The string to be validated
+ * @returns True if data is a valid ISBN 13
+ */
+function isValidISBN13(data: string) 
+{
+    let isbnRegex = /^(97[89])?\d{9}(\d|X)$/;
+    // Check if the ISBN matches the regex
+        return isbnRegex.test(data);
+}
+
+
 /**
  * Adds a Book object to web storage. Assumes all data is valid
  * @param b The Book containing valid data to be added
