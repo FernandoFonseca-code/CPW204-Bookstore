@@ -24,16 +24,28 @@ window.onload = function () {
     }
 };
 function getBook() {
-    let isbnTextBox = document.querySelector("#isbnFormField");
+    let isbnFormField = document.querySelector("#isbnFormField");
     let bookTitleFormField = document.querySelector("#bookTitleFormField");
     let retailPriceFormField = document.querySelector("#retailPriceFormField");
     let releaseDateFormField = document.querySelector("#releaseDateFormField");
     let isValidData = true;
-    let isbn = isbnTextBox.value;
+    let isbn = isbnFormField.value;
     if (!isValidISBN13(isbn)) {
         isValidData = false;
-        let isbnErrorTextBox = isbnTextBox.nextElementSibling;
+        let isbnErrorTextBox = isbnFormField.nextElementSibling;
         isbnErrorTextBox.textContent = "ISBN must be either 10 or 13 digits";
+    }
+    let title = bookTitleFormField.value;
+    if (title.trim() == "") {
+        isValidData = false;
+        let bookTitleErrorTextBox = bookTitleFormField.nextElementSibling;
+        bookTitleErrorTextBox.textContent = "Title must be entered; can't be blank";
+    }
+    let price = parseFloat(retailPriceFormField.value);
+    if (isNaN(price) || price < 0) {
+        isValidData = false;
+        let retailPriceErrorTextBox = retailPriceFormField.nextElementSibling;
+        retailPriceErrorTextBox.textContent = "Price must be a positive number";
     }
 }
 function isValidISBN13(data) {

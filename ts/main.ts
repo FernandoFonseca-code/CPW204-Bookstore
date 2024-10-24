@@ -89,6 +89,25 @@ function getBook():Book
         isbnErrorTextBox.textContent = "ISBN must be either 10 or 13 digits";
     }
 
+    // Validate title
+    let title: string = bookTitleFormField.value;
+    if (title.trim() == "")
+    {
+        isValidData = false;
+        let bookTitleErrorTextBox = bookTitleFormField.nextElementSibling as HTMLElement;
+        bookTitleErrorTextBox.textContent = "Title must be entered; can't be blank";
+    }
+
+    // Validate Price
+    let price:number = parseFloat(retailPriceFormField.value);
+    if (isNaN(price) || price < 0)
+    {
+        isValidData = false;
+        let retailPriceErrorTextBox = retailPriceFormField.nextElementSibling as HTMLElement;
+        retailPriceErrorTextBox.textContent = "Price must be a positive number"
+    }
+
+    // Validate Release Date
     
 }
 
@@ -104,7 +123,11 @@ function isValidISBN13(data: string)
         return isbnRegex.test(data);
 }
 
-
+// function isValidBookTitle(data: string)
+// {
+//     let 
+//     return 
+// }
 /**
  * Adds a Book object to web storage. Assumes all data is valid
  * @param b The Book containing valid data to be added
