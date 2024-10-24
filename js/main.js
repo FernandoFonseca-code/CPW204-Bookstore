@@ -13,3 +13,10 @@ myBook.title = "Goosebumps";
 myBook.price = 9.99;
 myBook.releaseDate = new Date(1999, 9, 31);
 console.log(myBook);
+window.onload = function () {
+    let addBookButton = document.querySelector("#submitButton");
+    addBookButton.onclick = processBook;
+    function processBook() {
+        alert("processBook was called");
+    }
+};
