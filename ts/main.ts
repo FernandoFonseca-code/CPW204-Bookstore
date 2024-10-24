@@ -18,9 +18,25 @@
  */
 class Book 
 {
+    /** 
+     * The 13 digit ISBN number
+     */
     isbn: string = "";
+
+    /**
+     * The title of the book
+     */
     title: string = "";
+
+    /**
+     * The book retail price
+     */
     price: number = 0;
+
+    /**
+     * Date the book was first published.
+     * This could be in the future date, if the bood is not released.
+     */
     releaseDate: Date = new Date();
 }
 // Book object test code
