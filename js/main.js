@@ -47,6 +47,13 @@ function getBook() {
         let retailPriceErrorTextBox = retailPriceFormField.nextElementSibling;
         retailPriceErrorTextBox.textContent = "Price must be a positive number";
     }
+    let releaseDate = releaseDateFormField.value;
+    let releaseDateCheck = Date.parse(releaseDate);
+    if (isNaN(releaseDateCheck)) {
+        isValidData = false;
+        let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling;
+        releaseDateErrorTextBox.textContent = "Release date must be a valid date";
+    }
 }
 function isValidISBN13(data) {
     let isbnRegex = /^(97[89])?\d{9}(\d|X)$/;

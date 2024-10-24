@@ -108,7 +108,15 @@ function getBook():Book
     }
 
     // Validate Release Date
-    
+    let releaseDate:string = releaseDateFormField.value;
+    let releaseDateCheck = Date.parse(releaseDate);
+    if (isNaN(releaseDateCheck))
+    {
+        isValidData = false;
+        let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling as HTMLElement;
+        releaseDateErrorTextBox.textContent = "Release date must be a valid date"
+    }
+        
 }
 
 /**
