@@ -35,7 +35,7 @@ class Book
 
     /**
      * Date the book was first published.
-     * This could be in the future date, if the bood is not released.
+     * This could be in the future date, if the book is not released.
      */
     releaseDate: Date = new Date();
 }

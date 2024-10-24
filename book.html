@@ -7,6 +7,29 @@
         <script defer src="js/main.js"></script>
     </head>
     <body>
-        
+        <h2> Add a book</h2>
+        <form>
+            <label for="isbn">Enter ISBN:</label>
+            <input type="text" id="isbnFormField" name="isbn">
+            <span class="error-msg"></span>
+            <br>
+            
+            <label for="bookTitle">Title of Book</label>
+            <input type="text" id="bookTitleFormField" name="bookTitle">
+            <span class="error-msg"></span>
+            <br>
+
+            <label for="releaseDate">Retail Price</label>
+            <input type="number" id="retailPriceFormField" name="retailPrice" step="0.01" min="0">
+            <span class="error-msg"></span>
+            <br>
+
+            <label for="releaseDate">Release Date</label>
+            <input type="date" id="releaseDateFormField" name="releaseDate">
+            <span class="error-msg"></span>
+            <br>
+
+            <button type="button" id="submitButton" name="submitButton">Submit Book</button>
+        </form>
     </body>
 </html>
