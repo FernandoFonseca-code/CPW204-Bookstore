@@ -24,6 +24,7 @@ window.onload = function () {
     }
 };
 function getBook() {
+    clearAllErrorMessages();
     let isbnFormField = document.querySelector("#isbnFormField");
     let bookTitleFormField = document.querySelector("#bookTitleFormField");
     let retailPriceFormField = document.querySelector("#retailPriceFormField");
@@ -60,4 +61,11 @@ function isValidISBN13(data) {
     return isbnRegex.test(data);
 }
 function addBook(b) {
+}
+function clearAllErrorMessages() {
+    let allErrorMessages = document.querySelectorAll(".err-msg");
+    for (let i = 0; i < allErrorMessages.length; i++) {
+        let currentElement = allErrorMessages[i];
+        currentElement.textContent = "";
+    }
 }

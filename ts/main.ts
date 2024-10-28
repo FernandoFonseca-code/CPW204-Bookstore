@@ -71,6 +71,7 @@ window.onload = function()
  */
 function getBook():Book
 {
+    clearAllErrorMessages();
     // get all inputs
     let isbnFormField = document.querySelector("#isbnFormField") as HTMLInputElement;
     let bookTitleFormField = document.querySelector("#bookTitleFormField") as HTMLInputElement;
@@ -143,4 +144,17 @@ function isValidISBN13(data: string)
 function addBook(b:Book): void
 {
 
+}
+
+/**
+ * Clears all the error messages from the form
+ */
+function clearAllErrorMessages() 
+{
+    let allErrorMessages = document.querySelectorAll(".err-msg");
+    for (let i = 0; i < allErrorMessages.length; i++)
+    {
+        let currentElement = allErrorMessages[i];
+        currentElement.textContent = "";
+    }
 }
