@@ -151,7 +151,7 @@ function addBook(b:Book): void
  */
 function clearAllErrorMessages() 
 {
-    let allErrorMessages = document.querySelectorAll(".err-msg");
+    let allErrorMessages = document.querySelectorAll(".error-msg");
     for (let i = 0; i < allErrorMessages.length; i++)
     {
         let currentElement = allErrorMessages[i];
