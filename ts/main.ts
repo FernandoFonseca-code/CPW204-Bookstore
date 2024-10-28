@@ -39,29 +39,27 @@ class Book
      */
     releaseDate: Date = new Date();
 }
-// Book object test code
-let myBook = new Book();
-myBook.isbn = "12345";
-myBook.title = "Goosebumps";
-myBook.price = 9.99;
-// Months start at index 0; January == 0 && December == 11
-myBook.releaseDate = new Date(1999, 9, 31); 
+// // Book object test code
+// let myBook = new Book();
+// myBook.isbn = "12345";
+// myBook.title = "Goosebumps";
+// myBook.price = 9.99;
+// // Months start at index 0; January == 0 && December == 11
+// myBook.releaseDate = new Date(1999, 9, 31); 
 
-console.log(myBook);
+// console.log(myBook);
 
 window.onload = function() 
 {// the querySelector function requires a CSS id tag
     let addBookButton = document.querySelector("#addBookButton") as HTMLButtonElement;
     addBookButton.onclick = processBook;
-     
+}     
 
-    function processBook() 
-    {
-        let userBook = getBook();
-        if (userBook != null){
-            addBook(userBook);
-        }
-        //
+function processBook() 
+{
+    let userBook = getBook();
+    if (userBook != null){
+        addBook(userBook);
     }
 }
 /**
@@ -69,7 +67,7 @@ window.onload = function()
  * is valid a Book object will be returned. If any data is invalid, null will 
  * be returned and error messages will be displayed 
  */
-function getBook():Book
+function getBook():Book | null
 {
     clearAllErrorMessages();
     // get all inputs
@@ -117,7 +115,19 @@ function getBook():Book
         let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling as HTMLElement;
         releaseDateErrorTextBox.textContent = "Release date must be a valid date"
     }
-        
+
+    if (isValidData)
+    {
+        //  Create and populate a Book object if all data is valid
+        let addedBook = new Book();
+        addedBook.isbn = isbn;
+        addedBook.title = title;
+        addedBook.price = price;
+        addedBook.releaseDate = new Date(releaseDate);
+
+        return addedBook;
+    }
+    return null;
 }
 
 /**
@@ -127,23 +137,19 @@ function getBook():Book
  */
 function isValidISBN13(data: string) 
 {
-    let isbnRegex = /^(97[89])?\d{9}(\d|X)$/;
+    let isbnRegex = /^(?:\d{10}|\d{13})$/;
     // Check if the ISBN matches the regex
         return isbnRegex.test(data);
 }
 
-// function isValidBookTitle(data: string)
-// {
-//     let 
-//     return 
-// }
 /**
  * Adds a Book object to web storage. Assumes all data is valid
  * @param b The Book containing valid data to be added
  */
 function addBook(b:Book): void
 {
-
+    alert("Data is valid. Ready to add book to web storage");
+    console.log(b);
 }
 
 /**

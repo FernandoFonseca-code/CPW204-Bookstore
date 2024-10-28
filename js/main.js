@@ -7,22 +7,16 @@ class Book {
         this.releaseDate = new Date();
     }
 }
-let myBook = new Book();
-myBook.isbn = "12345";
-myBook.title = "Goosebumps";
-myBook.price = 9.99;
-myBook.releaseDate = new Date(1999, 9, 31);
-console.log(myBook);
 window.onload = function () {
     let addBookButton = document.querySelector("#addBookButton");
     addBookButton.onclick = processBook;
-    function processBook() {
-        let userBook = getBook();
-        if (userBook != null) {
-            addBook(userBook);
-        }
-    }
 };
+function processBook() {
+    let userBook = getBook();
+    if (userBook != null) {
+        addBook(userBook);
+    }
+}
 function getBook() {
     clearAllErrorMessages();
     let isbnFormField = document.querySelector("#isbnFormField");
@@ -55,12 +49,23 @@ function getBook() {
         let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling;
         releaseDateErrorTextBox.textContent = "Release date must be a valid date";
     }
+    if (isValidData) {
+        let addedBook = new Book();
+        addedBook.isbn = isbn;
+        addedBook.title = title;
+        addedBook.price = price;
+        addedBook.releaseDate = new Date(releaseDate);
+        return addedBook;
+    }
+    return null;
 }
 function isValidISBN13(data) {
-    let isbnRegex = /^(97[89])?\d{9}(\d|X)$/;
+    let isbnRegex = /^(?:\d{10}|\d{13})$/;
     return isbnRegex.test(data);
 }
 function addBook(b) {
+    alert("Data is valid. Ready to add book to web storage");
+    console.log(b);
 }
 function clearAllErrorMessages() {
     let allErrorMessages = document.querySelectorAll(".error-msg");
