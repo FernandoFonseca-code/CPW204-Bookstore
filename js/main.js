@@ -42,9 +42,8 @@ function getBook() {
         let retailPriceErrorTextBox = retailPriceFormField.nextElementSibling;
         retailPriceErrorTextBox.textContent = "Price must be a positive number";
     }
-    let releaseDate = releaseDateFormField.value;
-    let releaseDateCheck = Date.parse(releaseDate);
-    if (isNaN(releaseDateCheck)) {
+    let releaseDate = new Date(releaseDateFormField.value + 'T07:00:00Z');
+    if (isNaN(releaseDate.getTime())) {
         isValidData = false;
         let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling;
         releaseDateErrorTextBox.textContent = "Release date must be a valid date";

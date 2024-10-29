@@ -107,9 +107,10 @@ function getBook():Book | null
     }
 
     // Validate Release Date
-    let releaseDate:string = releaseDateFormField.value;
-    let releaseDateCheck = Date.parse(releaseDate);
-    if (isNaN(releaseDateCheck))
+    // The 'T07:00:00Z' is added to the date string to make sure UTC and local time zone (Pacific) match
+    let releaseDate:Date = new Date(releaseDateFormField.value + 'T07:00:00Z');
+    
+    if (isNaN(releaseDate.getTime()))
     {
         isValidData = false;
         let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling as HTMLElement;
