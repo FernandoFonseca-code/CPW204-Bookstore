@@ -135,13 +135,14 @@ function isValidISBN13(data: string)
 }
 
 /**
- * Adds a Book object to web storage. Assumes all data is valid
+ * Adds a Book object to the web page and to web storage. Assumes all data is valid
  * @param b The Book containing valid data to be added
  */
 function addBook(b:Book): void
 {
-    alert("Data is valid. Ready to add book to web storage");
     console.log(b);
+    // add book to web page
+    
 }
 
 /**

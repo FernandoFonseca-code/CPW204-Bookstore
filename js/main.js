@@ -63,7 +63,6 @@ function isValidISBN13(data) {
     return isbnRegex.test(data);
 }
 function addBook(b) {
-    alert("Data is valid. Ready to add book to web storage");
     console.log(b);
 }
 function clearAllErrorMessages() {
