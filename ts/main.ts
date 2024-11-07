@@ -39,15 +39,6 @@ class Book
      */
     releaseDate: Date = new Date();
 }
-// // Book object test code
-// let myBook = new Book();
-// myBook.isbn = "12345";
-// myBook.title = "Goosebumps";
-// myBook.price = 9.99;
-// // Months start at index 0; January == 0 && December == 11
-// myBook.releaseDate = new Date(1999, 9, 31); 
-
-// console.log(myBook);
 
 window.onload = function() 
 {// the querySelector function requires a CSS id tag
