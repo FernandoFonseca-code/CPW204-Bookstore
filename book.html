@@ -11,26 +11,29 @@
         <h2> Add a book</h2>
         <form>
             <label for="isbn">Enter ISBN:</label>
-            <input type="text" id="isbnFormField" name="isbn">
+            <input type="text" id="isbnFormField" name="isbn" title="Enter the ISBN" placeholder="Enter the ISBN">
             <span class="error-msg"></span>
             <br>
             
             <label for="bookTitle">Title of Book</label>
-            <input type="text" id="bookTitleFormField" name="bookTitle">
+            <input type="text" id="bookTitleFormField" name="bookTitle" title="Enter the book title" placeholder="Enter the book title">
             <span class="error-msg"></span>
             <br>
 
             <label for="releaseDate">Retail Price</label>
-            <input type="number" id="retailPriceFormField" name="retailPrice" step="0.01">
+            <input type="number" id="retailPriceFormField" name="retailPrice" step="0.01" title="Enter the retail price" placeholder="Enter the retail price">
             <span class="error-msg"></span>
             <br>
 
             <label for="releaseDate">Release Date</label>
-            <input type="date" id="releaseDateFormField" name="releaseDate">
+            <input type="date" id="releaseDateFormField" name="releaseDate" title="Enter the release date" placeholder="Enter the release date">
             <span class="error-msg"></span>
             <br>
 
             <button type="button" id="addBookButton" name="addBookButton">Add Book</button>
         </form>
+
+        <!--Books added will be nested within this div-->
+        <div id="book-display"></div>
     </body>
 </html>

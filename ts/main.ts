@@ -141,8 +141,27 @@ function isValidISBN13(data: string)
 function addBook(b:Book): void
 {
     console.log(b);
-    // add book to web page
+    /* Add the book to the web page */
+
+    // creates a new div element
+    let bookDiv:HTMLDivElement = document.createElement("div");
+
+    // create an h2 element
+    let titleHeading:HTMLHeadingElement = document.createElement("h2");
+    titleHeading.textContent = `${b.title} : ${b.isbn}`; // This is a template literal instead of concatenation
     
+    //create a paragraph element
+    let bookDescription:HTMLParagraphElement = document.createElement("p");
+    bookDescription.textContent = `This book will be released on ${b.releaseDate.toDateString()}
+    and will cost $${b.price.toFixed(2)}`;
+
+    // Add h2 and p to book div element
+    bookDiv.appendChild(titleHeading); 
+    bookDiv.appendChild(bookDescription);
+
+    // Add bookDiv to the web page
+    let BookListDisplay = document.querySelector("#book-display") as HTMLDivElement;
+    BookListDisplay.appendChild(bookDiv);
 }
 
 /**

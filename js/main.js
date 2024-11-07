@@ -64,6 +64,16 @@ function isValidISBN13(data) {
 }
 function addBook(b) {
     console.log(b);
+    let bookDiv = document.createElement("div");
+    let titleHeading = document.createElement("h2");
+    titleHeading.textContent = `${b.title} : ${b.isbn}`;
+    let bookDescription = document.createElement("p");
+    bookDescription.textContent = `This book will be released on ${b.releaseDate.toDateString()}
+    and will cost $${b.price.toFixed(2)}`;
+    bookDiv.appendChild(titleHeading);
+    bookDiv.appendChild(bookDescription);
+    let BookListDisplay = document.querySelector("#book-display");
+    BookListDisplay.appendChild(bookDiv);
 }
 function clearAllErrorMessages() {
     let allErrorMessages = document.querySelectorAll(".error-msg");
