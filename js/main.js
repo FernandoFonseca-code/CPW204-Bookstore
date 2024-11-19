@@ -79,16 +79,9 @@ function addBookToWebPage(b) {
 function addBookToStorage(b) {
     const BookStorageKey = "Books";
     let bookData = localStorage.getItem(BookStorageKey);
-    if (bookData == null) {
-        let books = [];
-        books.push(b);
-        bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
-    }
-    else {
-        let books = JSON.parse(bookData);
-        books.push(b);
-        bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
-    }
+    let books = bookData ? JSON.parse(bookData) : [];
+    books.push(b);
+    bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
 }
 function storeBooksInLocalStorage(bookData, books, BookStorageKey) {
     bookData = JSON.stringify(books);
