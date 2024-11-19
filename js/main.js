@@ -82,11 +82,18 @@ function addBookToStorage(b) {
     if (bookData == null) {
         let books = [];
         books.push(b);
-        bookData = JSON.stringify(books);
-        localStorage.setItem(BookStorageKey, bookData);
+        bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
     }
     else {
+        let books = JSON.parse(bookData);
+        books.push(b);
+        bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
     }
+}
+function storeBooksInLocalStorage(bookData, books, BookStorageKey) {
+    bookData = JSON.stringify(books);
+    localStorage.setItem(BookStorageKey, bookData);
+    return bookData;
 }
 function clearAllErrorMessages() {
     let allErrorMessages = document.querySelectorAll(".error-msg");

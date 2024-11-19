@@ -182,14 +182,23 @@ function addBookToStorage(b:Book): void
         books.push(b);
 
         // Add to local storage
-        bookData = JSON.stringify(books);
-        localStorage.setItem(BookStorageKey, bookData);
+        bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
     }
     else
     {
         // Parse to string into a list of books and add new book to the list
         // store the newly modified list back in storage
+        let books:Book[] = JSON.parse(bookData);
+        books.push(b);
+
+        bookData = storeBooksInLocalStorage(bookData, books, BookStorageKey);
     }
+}
+
+function storeBooksInLocalStorage(bookData: string | null, books: Book[], BookStorageKey: string) {
+    bookData = JSON.stringify(books);
+    localStorage.setItem(BookStorageKey, bookData);
+    return bookData;
 }
 
 /**
