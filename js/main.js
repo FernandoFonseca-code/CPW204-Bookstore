@@ -14,7 +14,8 @@ window.onload = function () {
 function processBook() {
     let userBook = getBook();
     if (userBook != null) {
-        addBook(userBook);
+        addBookToWebPage(userBook);
+        addBookToStorage(userBook);
     }
 }
 function getBook() {
@@ -42,7 +43,7 @@ function getBook() {
         let retailPriceErrorTextBox = retailPriceFormField.nextElementSibling;
         retailPriceErrorTextBox.textContent = "Price must be a positive number";
     }
-    let releaseDate = new Date(releaseDateFormField.value + 'T07:00:00Z');
+    let releaseDate = new Date(releaseDateFormField.value + 'T08:00:00Z');
     if (isNaN(releaseDate.getTime())) {
         isValidData = false;
         let releaseDateErrorTextBox = releaseDateFormField.nextElementSibling;
@@ -62,7 +63,7 @@ function isValidISBN13(data) {
     let isbnRegex = /^(?:\d{10}|\d{13})$/;
     return isbnRegex.test(data);
 }
-function addBook(b) {
+function addBookToWebPage(b) {
     console.log(b);
     let bookDiv = document.createElement("div");
     let titleHeading = document.createElement("h2");
@@ -74,6 +75,18 @@ function addBook(b) {
     bookDiv.appendChild(bookDescription);
     let BookListDisplay = document.querySelector("#book-display");
     BookListDisplay.appendChild(bookDiv);
+}
+function addBookToStorage(b) {
+    const BookStorageKey = "Books";
+    let bookData = localStorage.getItem(BookStorageKey);
+    if (bookData == null) {
+        let books = [];
+        books.push(b);
+        bookData = JSON.stringify(books);
+        localStorage.setItem(BookStorageKey, bookData);
+    }
+    else {
+    }
 }
 function clearAllErrorMessages() {
     let allErrorMessages = document.querySelectorAll(".error-msg");

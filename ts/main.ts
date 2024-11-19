@@ -50,7 +50,8 @@ function processBook()
 {
     let userBook = getBook();
     if (userBook != null){
-        addBook(userBook);
+        addBookToWebPage(userBook);
+        addBookToStorage(userBook);
     }
 }
 /**
@@ -99,7 +100,7 @@ function getBook():Book | null
 
     // Validate Release Date
     // The 'T07:00:00Z' is added to the date string to make sure UTC and local time zone (Pacific) match
-    let releaseDate:Date = new Date(releaseDateFormField.value + 'T07:00:00Z');
+    let releaseDate:Date = new Date(releaseDateFormField.value + 'T08:00:00Z');
     
     if (isNaN(releaseDate.getTime()))
     {
@@ -135,10 +136,10 @@ function isValidISBN13(data: string)
 }
 
 /**
- * Adds a Book object to the web page and to web storage. Assumes all data is valid
+ * Adds a Book object to the web page. Assumes all data is valid
  * @param b The Book containing valid data to be added
  */
-function addBook(b:Book): void
+function addBookToWebPage(b:Book): void
 {
     console.log(b);
     /* Add the book to the web page */
@@ -162,6 +163,33 @@ function addBook(b:Book): void
     // Add bookDiv to the web page
     let BookListDisplay = document.querySelector("#book-display") as HTMLDivElement;
     BookListDisplay.appendChild(bookDiv);
+}
+/**
+ * Adds a single Book object to existing book list in storage.
+ * If no book list exists, a new book list will be created.
+ * @param b The Book object to be added to storage
+ */
+function addBookToStorage(b:Book): void
+{
+    const BookStorageKey = "Books";
+    // Read existing books out of storage
+    let bookData = localStorage.getItem(BookStorageKey);
+    // if book Data is null, the "Books" key did not exist
+    if (bookData == null)
+    {
+        //Create a new list and add out current book
+        let books:Book[] = [];
+        books.push(b);
+
+        // Add to local storage
+        bookData = JSON.stringify(books);
+        localStorage.setItem(BookStorageKey, bookData);
+    }
+    else
+    {
+        // Parse to string into a list of books and add new book to the list
+        // store the newly modified list back in storage
+    }
 }
 
 /**
